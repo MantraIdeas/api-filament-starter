@@ -51,6 +51,7 @@
             "@php artisan package:discover --ansi",
             "@php artisan filament:upgrade",
             "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:models -M",
             "@php artisan ide-helper:meta"
         ],
         "post-update-cmd": [

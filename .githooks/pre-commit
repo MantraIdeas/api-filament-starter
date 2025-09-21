@@ -1,6 +1,25 @@
 #!/bin/sh
 # Run code quality tools before commit
 
+echo "📚 Generating IDE Helper files..."
+php artisan ide-helper:generate
+if [ $? -ne 0 ]; then
+  echo "❌ ide-helper:generate failed."
+  exit 1
+fi
+
+php artisan ide-helper:models -M
+if [ $? -ne 0 ]; then
+  echo "❌ ide-helper:models failed."
+  exit 1
+fi
+
+php artisan ide-helper:meta
+if [ $? -ne 0 ]; then
+  echo "❌ ide-helper:meta failed."
+  exit 1
+fi
+
 echo "🔍 Running Larastan..."
 ./vendor/bin/phpstan analyse --memory-limit=1G
 if [ $? -ne 0 ]; then
