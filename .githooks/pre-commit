@@ -8,7 +8,7 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-php artisan ide-helper:models -M
+php artisan ide-helper:models --no-interaction
 if [ $? -ne 0 ]; then
   echo "❌ ide-helper:models failed."
   exit 1
