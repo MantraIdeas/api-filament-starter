@@ -1,0 +1,26 @@
+#!/bin/sh
+# Run code quality tools before commit
+
+echo "🔍 Running Larastan..."
+./vendor/bin/phpstan analyse --memory-limit=1G
+if [ $? -ne 0 ]; then
+  echo "❌ Larastan failed. Fix errors before committing."
+  exit 1
+fi
+
+echo "✨ Running Laravel Pint..."
+./vendor/bin/pint
+if [ $? -ne 0 ]; then
+  echo "❌ Pint failed."
+  exit 1
+fi
+
+echo "🛠 Running Rector..."
+./vendor/bin/rector process
+if [ $? -ne 0 ]; then
+  echo "❌ Rector failed."
+  exit 1
+fi
+
+echo "✅ All checks passed!"
+
