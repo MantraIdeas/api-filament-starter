@@ -1,13 +1,11 @@
 <?php
 
-
-beforeEach(function () {
-    $this->service = new \App\Services\OtpService();
-    $this->email = "test@example.com";
+beforeEach(function (): void {
+    $this->service = new \App\Services\OtpService;
+    $this->email = 'test@example.com';
 });
 
-
-it("Can Save OTP to Database", function () {
+it('Can Save OTP to Database', function (): void {
     $otpRecord = $this->service->saveOtpToDatabase($this->email);
     expect($otpRecord)->toBeInstanceOf(\App\Models\Otp::class)
         ->and($otpRecord->email)->toBe($this->email)
@@ -16,8 +14,7 @@ it("Can Save OTP to Database", function () {
         ->and($otpRecord->expires_at)->toBeGreaterThan(now());
 });
 
-
-it("Can Verify OTP", function () {
+it('Can Verify OTP', function (): void {
     $otpRecord = $this->service->saveOtpToDatabase($this->email);
     $isValid = $this->service->verifyOtp($this->email, $otpRecord->otp);
     expect($isValid)->toBeTrue();
@@ -27,8 +24,7 @@ it("Can Verify OTP", function () {
     expect($isInvalid)->toBeFalse();
 });
 
-
-it("Can Delete OTP", function () {
+it('Can Delete OTP', function (): void {
     $this->service->saveOtpToDatabase($this->email);
     $this->service->deleteOtp($this->email);
     $otpRecord = \App\Models\Otp::where('email', $this->email)->first();

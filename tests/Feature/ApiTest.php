@@ -1,16 +1,16 @@
 <?php
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->email = 'test@example.com';
 });
 
-test('test logout endpoint without authentication', function () {
+test('test logout endpoint without authentication', function (): void {
     $response = $this->postJson('/api/logout');
 
     $response->assertStatus(401);
 });
 
-test('test logout endpoint with authentication', function () {
+test('test logout endpoint with authentication', function (): void {
     $user = \App\Models\User::factory()->create();
 
     $response = $this->actingAs($user, 'sanctum')
@@ -20,7 +20,7 @@ test('test logout endpoint with authentication', function () {
 
 });
 
-test('validate user registration api', function () {
+test('validate user registration api', function (): void {
     $response = $this->postJson('/api/v1/register', [
         'name' => '',
         'email' => 'invalid-email',
@@ -33,7 +33,7 @@ test('validate user registration api', function () {
 
 });
 
-test('register user successfully', function () {
+test('register user successfully', function (): void {
 
     $response = $this->postJson('/api/v1/register', [
         'name' => 'Test User',
@@ -50,19 +50,19 @@ test('register user successfully', function () {
             'name',
             'email',
             'token',
-        ]
+        ],
     ]);
 
     $this->assertDatabaseHas('users',
         [
             'name' => 'Test User',
-            'email' => $this->email
+            'email' => $this->email,
         ]
     );
 
 });
 
-test('validate user login api', function () {
+test('validate user login api', function (): void {
     $response = $this->postJson('/api/v1/login', [
         'email' => 'invalid-email',
         'password' => '',
@@ -73,8 +73,7 @@ test('validate user login api', function () {
 
 });
 
-
-test('login user successfully', function () {
+test('login user successfully', function (): void {
     \App\Models\User::factory()->create([
         'email' => $this->email,
         'password' => bcrypt('password'),
@@ -93,12 +92,11 @@ test('login user successfully', function () {
             'name',
             'email',
             'token',
-        ]
+        ],
     ]);
 });
 
-
-test('login with invalid credentials', function () {
+test('login with invalid credentials', function (): void {
     \App\Models\User::factory()->create([
         'email' => $this->email,
         'password' => bcrypt('password'),
@@ -113,11 +111,11 @@ test('login with invalid credentials', function () {
 
     $response->assertJson([
         'message' => 'Email or password is incorrect',
-        'data' => []
+        'data' => [],
     ]);
 });
 
-test('forgot password successfully generate otp and send email', function () {
+test('forgot password successfully generate otp and send email', function (): void {
     \App\Models\User::factory()->create([
         'email' => $this->email,
         'password' => bcrypt('password'),
@@ -138,7 +136,7 @@ test('forgot password successfully generate otp and send email', function () {
     ]);
 });
 
-test('forgot password with invalid email', function () {
+test('forgot password with invalid email', function (): void {
     $response = $this->postJson('/api/v1/forgot-password', [
         'email' => 'invalid-email',
     ]);
@@ -148,7 +146,7 @@ test('forgot password with invalid email', function () {
 
 });
 
-test('test reset password endpoint', function () {
+test('test reset password endpoint', function (): void {
     $user = \App\Models\User::factory()->create([
         'email' => $this->email,
         'password' => bcrypt('old-password'),
@@ -178,7 +176,7 @@ test('test reset password endpoint', function () {
     $this->assertTrue(\Illuminate\Support\Facades\Hash::check('new-password', $user->fresh()->password));
 });
 
-test('test resend otp', function () {
+test('test resend otp', function (): void {
     $user = \App\Models\User::factory()->create([
         'email' => $this->email,
         'password' => bcrypt('password'),
@@ -200,7 +198,7 @@ test('test resend otp', function () {
 
 });
 
-test('test verify otp api for registration', function () {
+test('test verify otp api for registration', function (): void {
     $user = \App\Models\User::factory()->create([
         'email' => $this->email,
         'password' => bcrypt('password'),
@@ -226,7 +224,7 @@ test('test verify otp api for registration', function () {
     ]);
 });
 
-test('test verify otp api for reset password', function () {
+test('test verify otp api for reset password', function (): void {
     $user = \App\Models\User::factory()->create([
         'email' => $this->email,
         'password' => bcrypt('password'),
@@ -258,7 +256,7 @@ test('test verify otp api for reset password', function () {
 
 });
 
-test('test change password api', function () {
+test('test change password api', function (): void {
     $user = \App\Models\User::factory()->create([
         'email' => $this->email,
         'password' => bcrypt('old-password'),

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Enums\UserRoleEnum;
 use App\Enums\VerifyOtpForEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\Authentication\ChangePasswordRequest;
@@ -73,6 +72,7 @@ class AuthenticationController extends Controller
         try {
             if (! auth()->attempt($credentials)) {
                 DB::rollBack();
+
                 return Response::custom([], 403, 'Email or password is incorrect');
             }
             $user = auth()->user();

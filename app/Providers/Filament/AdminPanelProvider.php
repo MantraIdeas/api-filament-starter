@@ -48,22 +48,22 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->userMenuItems([
                 'profile' => MenuItem::make()
-                    ->label(fn() => auth()->user()->name)
-                    ->url(fn(): string => EditProfilePage::getUrl())
-                    ->icon('heroicon-m-user-circle')
+                    ->label(fn () => auth()->user()->name)
+                    ->url(fn (): string => EditProfilePage::getUrl())
+                    ->icon('heroicon-m-user-circle'),
             ])
             ->plugins([
                 FilamentShieldPlugin::make(),
                 FilamentDeveloperLoginsPlugin::make()
-                    ->enabled(!app()->isProduction())
-                    ->users(fn() => \App\Models\User::role('Superadmin')
+                    ->enabled(! app()->isProduction())
+                    ->users(fn () => \App\Models\User::role('Superadmin')
                         ->pluck('email', 'name')
                         ->toArray()),
                 FilamentLogViewer::make()
-                    ->authorize(fn() => auth()->user()->hasRole('Superadmin')),
+                    ->authorize(fn () => auth()->user()->hasRole('Superadmin')),
                 FilamentEditProfilePlugin::make()
                     ->slug('profile')
-                    ->shouldRegisterNavigation(false)
+                    ->shouldRegisterNavigation(false),
 
             ])
             ->middleware([
