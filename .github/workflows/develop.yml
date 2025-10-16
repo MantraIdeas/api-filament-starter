@@ -22,8 +22,8 @@ jobs:
       - run: npm run build
       - name: Commit built assets
         run: |
-          git config --local user.email "dipeshkhanal79@gmail.com"
-          git config --local user.name "Dipesh Khanal"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git checkout -B dev-deploy
           git add -f public/
           git commit -m "Build front-end assets"
@@ -52,6 +52,6 @@ jobs:
         uses: actions/checkout@v4
       - name: Delete dev-deploy branch
         run: |
-          git config --local user.email "dipeshkhanal79@gmail.com"
-          git config --local user.name "Dipesh Khanal"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git push origin --delete dev-deploy

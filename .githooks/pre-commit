@@ -20,6 +20,13 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
+echo "Running Pest Test Cases"
+./vendor/bin/pest
+if [ $? -ne 0 ]; then
+    echo "❌ Pest tests failed. Fix errors before committing."
+    exit 1
+fi
+
 echo "🔍 Running Larastan..."
 ./vendor/bin/phpstan analyse --memory-limit=1G
 if [ $? -ne 0 ]; then
@@ -42,4 +49,3 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "✅ All checks passed!"
-

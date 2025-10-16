@@ -10,7 +10,7 @@ Route::prefix('v1')->group(function (): void {
     Route::post('/reset-password', [AuthenticationController::class, 'resetPassword']);
     Route::post('/resend-otp', [AuthenticationController::class, 'resendOtp']);
 
-    Route::post('verify-otp', [AuthenticationController::class, 'verifyOtp']);
+    Route::post('/verify-otp', [AuthenticationController::class, 'verifyOtp']);
 
     Route::group(['middleware' => ['auth:sanctum', 'verified']], function (): void {
         Route::post('/change-password', [AuthenticationController::class, 'changePassword']);
