@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "888f594a702cca07f8e2655357214745",
+    "content-hash": "71ee2a9c9689e3db92a448eb455fb926",
     "packages": [
         {
             "name": "achyutn/filament-log-viewer",
@@ -946,6 +946,55 @@
                 }
             ],
             "time": "2024-09-11T11:07:43+00:00"
+        },
+        {
+            "name": "dipesh79/laravel-schema-docs",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dipesh79/LaravelSchemaDocs.git",
+                "reference": "6e274a51dfbfa2538012480f5f5bc5e324c8651a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dipesh79/LaravelSchemaDocs/zipball/6e274a51dfbfa2538012480f5f5bc5e324c8651a",
+                "reference": "6e274a51dfbfa2538012480f5f5bc5e324c8651a",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Dipesh79\\LaravelSchemaDocs\\Providers\\LaravelSchemaDocsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Dipesh79\\LaravelSchemaDocs\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dipesh79",
+                    "email": "dipeshkhanal79@gmail.com",
+                    "homepage": "https://www.khanaldipesh.com.np",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Automatically generate Laravel database documentation and explore your schema with an interactive dashboard. Export your schema to YAML for easy reference and integration.",
+            "support": {
+                "issues": "https://github.com/dipesh79/LaravelSchemaDocs/issues",
+                "source": "https://github.com/dipesh79/LaravelSchemaDocs/tree/1.0.1"
+            },
+            "time": "2025-11-14T04:19:22+00:00"
         },
         {
             "name": "doctrine/dbal",
