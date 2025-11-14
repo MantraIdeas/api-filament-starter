@@ -12,6 +12,7 @@
         "dedoc/scramble": "^0.12.34",
         "dipesh79/laravel-helpers": "^1.0",
         "dipesh79/laravel-mail-log-viewer": "^1.0",
+        "dipesh79/laravel-schema-docs": "^1.0",
         "dutchcodingcompany/filament-developer-logins": "^1.10",
         "filament/filament": "^3.3",
         "joaopaulolndev/filament-edit-profile": "^1.0",
